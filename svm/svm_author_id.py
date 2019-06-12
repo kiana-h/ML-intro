@@ -60,12 +60,12 @@ def author_id(features_train, features_test, labels_train, labels_test):
     print("prediction time: ", time()-t0)
     
     t0 = time()
-    accuracy = accuracy_score(pred, labels_test)
+    accuracy = accuracy_score(labels_test, pred)
     print("accuracy time: ", time()-t0)
        
     print("accuracy: ", accuracy)
     
-#   author_code([10,26,50] , pred)
+    author_code([10,26,50] , pred)
     author_count(pred)
     
     return accuracy

@@ -73,4 +73,5 @@ for person,features in enron_data.items():
         poi_no_pay_info += 1
 print("------"*10)
 print("pois with no payment info: " , poi_no_pay_info)
+print(enron_data["SKILLING JEFFREY K"])
         
