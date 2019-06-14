@@ -43,16 +43,22 @@ data_dict = pickle.load( open("../final_project/final_project_dataset_unix.pkl",
 ### there's an outlier--remove it! 
 data_dict.pop("TOTAL", 0)
 
-
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
-feature_3 = "total_payments"
+#feature_3 = "total_payments"
 poi  = "poi"
-features_list = [poi, feature_1, feature_2, feature_3]
+features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+scaled_data = scaler.fit_transform(finance_features)
+features_test = numpy.array([[200000., 1000000.]])
+print (scaler.transform(features_test))
+
 
 max_stock = 0
 min_stock = float("inf")
@@ -92,7 +98,7 @@ print ("max salary: ",max_salary)
 
 from sklearn.cluster import KMeans
 kmeans = KMeans(n_clusters=2)
-pred = kmeans.fit_predict( finance_features )
+pred = kmeans.fit_predict( scaled_data )
 
 
 ### cluster here; create predictions of the cluster labels
