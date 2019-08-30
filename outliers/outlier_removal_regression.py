@@ -41,22 +41,22 @@ print("score: " , reg.score(ages_test, net_worths_test))
 
 
 
-#try:
-#    plt.plot(ages, reg.predict(ages), color="blue")
-#except NameError:
-#    pass
-#plt.scatter(ages, net_worths)
-#plt.show()
-#
-#
-#### identify and remove the most outlier-y points
-#cleaned_data = []
-#try:
-#    predictions = reg.predict(ages_train)
-#    cleaned_data = outlierCleaner( predictions, ages_train, net_worths_train )
-#except NameError:
-#    print("your regression object doesn't exist, or isn't name reg")
-#    print("can't make predictions to use in identifying outliers")
+try:
+    plt.plot(ages, reg.predict(ages), color="blue")
+except NameError:
+    pass
+plt.scatter(ages, net_worths)
+plt.show()
+
+
+### identify and remove the most outlier-y points
+cleaned_data = []
+try:
+    predictions = reg.predict(ages_train)
+    cleaned_data = outlierCleaner( predictions, ages_train, net_worths_train )
+except NameError:
+    print("your regression object doesn't exist, or isn't name reg")
+    print("can't make predictions to use in identifying outliers")
 
 
 
@@ -64,7 +64,7 @@ print("score: " , reg.score(ages_test, net_worths_test))
 
 
 
-### only run this code if cleaned_data is returning data
+## only run this code if cleaned_data is returning data
 predictions = reg.predict(ages_train)
 cleaned_data = outlierCleaner( predictions, ages_train, net_worths_train )
 if len(cleaned_data) > 0:
@@ -88,6 +88,6 @@ if len(cleaned_data) > 0:
     plt.ylabel("net worths")
     plt.show()
 
-
+#
 else:
     print("outlierCleaner() is returning an empty list, no refitting to be done")
